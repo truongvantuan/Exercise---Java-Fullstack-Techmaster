@@ -16,12 +16,10 @@ public class ModifyingArrays {
             System.out.print(inputArray[i] + " ");
         }
 
-        // Add new values to array
+        // Call method addtoArray
         int[] resultArray = new int[inputArray.length + 1];
         System.out.print("\nNhap gia tri can them vao mang: ");
         int addValue = input.nextInt();
-
-        // Call method addtoArray
         resultArray = addToArray(inputArray, addValue);
         System.out.print("Mang sau khi them gia tri " + addValue + " la: ");
         for (int e : resultArray
@@ -39,9 +37,19 @@ public class ModifyingArrays {
         ) {
             System.out.print(e + " ");
         }
+
+        // Call method removeFromArray
+        System.out.print("\nNhap vi tri muon xoa: ");
+        int deletePisition = input.nextInt();
+        resultArray = removeFromArray(inputArray, deletePisition);
+        System.out.print("Mang sau khi xoa gia tri " + inputArray[deletePisition] + " tai vi tri " + deletePisition + " la: ");
+        for (int e : resultArray
+        ) {
+            System.out.print(e + " ");
+        }
     }
 
-
+    // Method addToArray
     public static int[] addToArray(int[] inputArray, int addValue) {
         int[] outputArray = new int[inputArray.length + 1];
         for (int i = 0; i < inputArray.length; i++) {
@@ -51,9 +59,9 @@ public class ModifyingArrays {
         return outputArray;
     }
 
+    // Method insertToArray
     public static int[] insertToArray(int[] inputArray, int position, int insertValue) {
         int[] outputArray = new int[inputArray.length + 1];
-
         //Use built-in method System.arraycopy to copy
         System.arraycopy(inputArray, 0, outputArray, 0, position);
         System.arraycopy(inputArray, position, outputArray, position + 1, inputArray.length - position);
@@ -61,6 +69,13 @@ public class ModifyingArrays {
         return outputArray;
     }
 
-
+    // Method removeFromArray
+    public static int[] removeFromArray(int[] inputArray, int deletePosition) {
+        int[] outputArray = new int[inputArray.length - 1];
+        // Use built-in method System.arraycopy to copy
+        System.arraycopy(inputArray, 0, outputArray, 0, deletePosition);
+        System.arraycopy(inputArray, deletePosition + 1, outputArray, deletePosition, inputArray.length - deletePosition - 1);
+        return outputArray;
+    }
 }
 
